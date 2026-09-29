@@ -242,40 +242,42 @@ int main()
     cout << "\n========== 13. SECOND PROJECT TEAM ==========\n";
 
     {
-        ProjectTeam team2(
+         ProjectTeam team2(
             "P002",
             "Banking Management System"
         );
 
-        // employee2 có thể tham gia nhiều nhóm
-        // mà không bị tạo bản sao Employee.
-        team2.addMember(employee2);
+        // employee1 đã có trong team1
+        // và bây giờ tiếp tục được thêm vào team2
+        if (team2.addMember(employee1))
+        {
+            cout << "Employee 1 added to team 2 successfully.\n";
+        }
 
-        // engineer2 cũng được thêm vào team2
-        team2.addMember(engineer2);
+        // Thêm thêm một SoftwareEngineer
+        if (team2.addMember(engineer2))
+        {
+            cout << "Engineer 2 added to team 2 successfully.\n";
+        }
 
         team2.displayTeam();
 
-        cout << "\nEmployee 2 is also a member of team 1? "
-             << (team1.contains(employee2.getId()) ? "YES" : "NO")
+        cout << "\nEmployee 1 is in team 1: "
+             << (team1.contains(employee1.getId()) ? "YES" : "NO")
              << "\n";
 
-        cout << "Employee 2 is a member of team 2? "
-             << (team2.contains(employee2.getId()) ? "YES" : "NO")
+        cout << "Employee 1 is in team 2: "
+             << (team2.contains(employee1.getId()) ? "YES" : "NO")
              << "\n";
 
 
-        // =====================================================
-        // 14. Hủy nhóm thứ hai bằng cách kết thúc khối lệnh
-        // =====================================================
+    // =====================================================
+    // 14. Hủy nhóm thứ hai bằng cách kết thúc khối lệnh
+    // =====================================================
 
-        cout << "\n========== 14. DESTROY TEAM 2 ==========\n";
-        cout << "Leaving local scope...\n";
-    }
-
-    // Khi đi ra khỏi {} ở trên,
-    // team2 đã bị hủy.
-    // Nhưng employee2 và engineer2 vẫn còn tồn tại.
+    cout << "\n========== 14. DESTROY TEAM 2 ==========\n";
+    cout << "Leaving local scope...\n";
+}
 
 
     // =========================================================
@@ -285,8 +287,8 @@ int main()
 
     cout << "\n========== 15. EMPLOYEES STILL EXIST ==========\n";
 
-    cout << "Employee 2 after team 2 destruction:\n";
-    employee2.displayInfo();
+    cout << "Employee 1 after team 2 destruction:\n";
+    employee1.displayInfo();
 
     cout << "\nEngineer 2 after team 2 destruction:\n";
     engineer2.displayInfo();
@@ -294,13 +296,12 @@ int main()
     cout << "\nThe employee objects still exist because "
          << "ProjectTeam does not own them.\n";
 
-
     // =========================================================
     // FINAL RESULT
     // =========================================================
 
     cout << "\n========================================\n";
-    cout << "        TEST PROGRAM FINISHED\n";
+    cout << "        TEST FINISHED\n";
     cout << "========================================\n";
 
     return 0;
